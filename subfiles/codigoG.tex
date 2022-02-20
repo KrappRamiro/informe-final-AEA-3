@@ -1,0 +1,64 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{../imagenes}
+
+\begin{document}
+\renewcommand{\subsectionbreak}{}
+\section{Código G}
+
+	\subsection{Introducción}
+
+	Código G es un lenguaje de programación utilizado para máquinas de control numérico
+	por computadora (CNC).
+
+	Se utiliza principalmente en la automatización debido a que los códigos G se les
+	ordena acciones específicas para la máquina, como, por ejemplo, movimientos simples
+	de la máquina que lo desplacen a otro punto del eje X, Y, o funciones de taladro, 
+	empezar a ``comer'' el material, girar en cierto sentido, etc.
+
+	\subsection{Grupos}
+
+	Cada código G tienen un numero de grupo, estos grupos de código contiene comandos
+	para un objetivo específico. Ejemplo, el grupo 2 ordena un movimiento a cierto punto
+	de los ejes de la máquina X26 Y40.
+
+	Cada uno de los grupos tiene un código G dominante, 
+	referido como el código G predeterminado.
+
+	Un código G predeterminado son los que la maquina utiliza en cada grupo, salvo que se 
+	especifique otro código G del grupo. Por ejemplo, la programación de un movimiento
+	X y Z,  X-2. Z-4 posicionara la maquina utilizando G00.
+
+	\subsection{Instrucciones basicas}
+	Las instrucciones basicas que utilizamos son: 
+	\begin{itemize}
+		\item T(N) Numero de herramienta que vamos a usar.
+		\item M2 Finaliza el programa (necesita de M5).
+		\item M3 Arranque del huesillo en sentido horario.
+		\item M4 Arranque del huesillo en sentido anti-horario.
+		\item M5 Detiene el huesillo.
+		\item s(n) Velocidad de giro del huesillo (usamos s1).
+		\item F(N) Velocidad del desplazamiento de mm/min (F100).
+		\item G0 Velocidad de desplazamiento rapida o aerea, es usado para ir de un punto al otro.
+		\item G1 Velocidad del mecanizado. es suficientemente lento para que pueda despejar
+			el material sin flexionarla.
+		\item G2 Movimiento circular en sentido horario.(Necesita la posicion X,Y y el radio de giro).
+			La posicion inicial y final no puede ser la misma.
+		\item G3 Movimiento circular, pero en sentido anti-horario.
+		\item G5 suspende momentaneamente el programa.
+		\item G90 suspende momentaneamente el programa.
+		\item G91 Especifica que todo lo que ve escribe a continuación sera con el 
+			sistemas de coordenadas respecto al origen(0,0).
+		\item G92 Cambia de cero matematico por programacion, permite redefinir la posicion actual,
+			es util para copiar y pegar un bloque de codigo.
+	\end{itemize}
+
+	\clearpage
+	
+	\subsection{Codigo de ejemplo}
+\inputminted
+[frame= lines, linenos, breaklines, tabsize = 3, fontsize=\footnotesize, 
+label=Código de ejemplo, fontseries=inconsolata]
+{gcode}{codigo_g.gcode}
+
+
+\end{document}
